@@ -38,9 +38,31 @@
             background-color: #030712;
             color: #f3f4f6;
             overflow-x: hidden;
+            width: 100%;
+            position: relative;
+        }
+        /* Prevents horizontal shifting and empty right space on mobile */
+        html {
+            max-width: 100vw;
+            overflow-x: hidden;
         }
         .code-font {
             font-family: 'JetBrains Mono', monospace;
+        }
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 15px rgba(0, 242, 254, 0.2); }
+            50% { box-shadow: 0 0 25px rgba(0, 242, 254, 0.6); }
+        }
+        .kudos-btn {
+            animation: pulseGlow 3s infinite;
+        }
+        @keyframes floatAnimation {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0px); }
+        }
+        .floating-whatsapp {
+            animation: floatAnimation 3s ease-in-out infinite;
         }
         .glass-panel {
             background: rgba(17, 24, 39, 0.85);
@@ -578,21 +600,46 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 px-4 sm:px-6 max-w-4xl mx-auto text-center" data-aos="zoom-in" data-aos-duration="800">
+<!-- Contact Section with Interactive Form -->
+    <section id="contact" class="py-20 px-4 sm:px-6 max-w-4xl mx-auto" data-aos="zoom-in" data-aos-duration="800">
         <div class="glass-panel p-8 sm:p-16 rounded-3xl relative">
-            <h2 class="text-3xl sm:text-4xl font-bold mb-4">Let's Connect</h2>
-            <p class="text-gray-400 max-w-xl mx-auto mb-8 text-sm sm:text-base">
-                I am actively seeking new opportunities to apply my technical and analytical skills. Feel free to reach out directly via email, phone, or LinkedIn.
-            </p>
-            <div class="flex flex-wrap justify-center gap-4">
-                <a href="mailto:sanjowilsonofficial@gmail.com" class="px-5 py-3 rounded-xl bg-cyan-500 text-black font-bold hover:bg-cyan-400 transition-colors flex items-center gap-2 text-sm sm:text-base shadow-lg shadow-cyan-500/20">
-                    <i class="fa-solid fa-envelope"></i> sanjowilsonofficial@gmail.com
+            <div class="text-center mb-8">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-4">Let's Connect</h2>
+                <p class="text-gray-400 max-w-xl mx-auto text-sm sm:text-base">
+                    Have a project in mind, a question, or a job opportunity? Drop me a message below or reach out directly via WhatsApp!
+                </p>
+            </div>
+
+            <!-- Contact Form (Powered by Formspree) -->
+            <form action="https://formspree.io/f/xjykqjae" method="POST" class="space-y-6 max-w-2xl mx-auto">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-xs font-mono text-cyan-400 mb-2">YOUR NAME</label>
+                        <input type="text" name="name" required placeholder="John Doe" class="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-white/10 text-white focus:outline-none focus:border-cyan-400 text-sm transition-colors">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-mono text-cyan-400 mb-2">YOUR EMAIL</label>
+                        <input type="email" name="email" required placeholder="john@example.com" class="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-white/10 text-white focus:outline-none focus:border-cyan-400 text-sm transition-colors">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-mono text-cyan-400 mb-2">MESSAGE</label>
+                    <textarea name="message" rows="5" required placeholder="Hi Sanjo, I'd like to talk about..." class="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-white/10 text-white focus:outline-none focus:border-cyan-400 text-sm transition-colors resize-none"></textarea>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="px-8 py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-black font-bold shadow-lg shadow-cyan-500/20 hover:scale-105 transition-transform flex items-center justify-center gap-2 mx-auto text-sm sm:text-base">
+                        <i class="fa-solid fa-paper-plane"></i> Send Message
+                    </button>
+                </div>
+            </form>
+
+            <!-- Direct Contact Links Alternative -->
+            <div class="flex flex-wrap justify-center gap-4 pt-10 mt-10 border-t border-white/10">
+                <a href="mailto:sanjowilsonofficial@gmail.com" class="px-4 py-2 rounded-xl glass-panel text-gray-300 hover:text-cyan-400 transition-colors flex items-center gap-2 text-xs sm:text-sm font-mono">
+                    <i class="fa-solid fa-envelope text-cyan-400"></i> sanjowilsonofficial@gmail.com
                 </a>
-                <a href="tel:+916238552309" class="px-5 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold hover:scale-105 transition-transform flex items-center gap-2 text-sm sm:text-base shadow-lg shadow-blue-500/20">
-                    <i class="fa-solid fa-phone"></i> +91 6238552309
-                </a>
-                <a href="https://www.linkedin.com/in/sanjo-wilson05042003" target="_blank" class="px-5 py-3 rounded-xl glass-panel text-white font-medium hover:border-cyan-400 transition-colors flex items-center gap-2 text-sm sm:text-base">
-                    <i class="fa-brands fa-linkedin text-cyan-400"></i> LinkedIn Profile
+                <a href="tel:+916238552309" class="px-4 py-2 rounded-xl glass-panel text-gray-300 hover:text-cyan-400 transition-colors flex items-center gap-2 text-xs sm:text-sm font-mono">
+                    <i class="fa-solid fa-phone text-blue-400"></i> +91 6238552309
                 </a>
             </div>
         </div>
@@ -658,6 +705,54 @@
             </div>
         </div>
     </div>
+
+    <!-- Floating WhatsApp Button on the Left Side with Animation -->
+        <a href="https://wa.me/916238552309?text=Hi%20Sanjo,%20I%20saw%20your%20portfolio%20and%20want%20to%20connect!" 
+        target="_blank" 
+        class="fixed bottom-22 sm:bottom-6 left-6 z-50 w-12 h-12 rounded-2xl glass-panel bg-emerald-950/90 border border-emerald-500/40 text-emerald-400 flex items-center justify-center shadow-lg hover:scale-110 hover:border-emerald-400 transition-all group floating-whatsapp" 
+        title="Chat on WhatsApp">
+            <i class="fa-brands fa-whatsapp text-xl group-hover:scale-110 transition-transform"></i>
+        </a>
+
+    <!-- Interactive "Leave a Kudos" Section -->
+    <section class="py-12 px-4 sm:px-6 max-w-xl mx-auto text-center" data-aos="fade-up">
+        <div class="glass-panel p-6 sm:p-8 rounded-3xl relative flex flex-col items-center justify-center space-y-4">
+            <span class="text-xs font-mono text-cyan-400 tracking-wider">SHOW SOME APPRECIATION</span>
+            <h3 class="text-xl font-bold text-white">Enjoyed exploring my portfolio?</h3>
+            <p class="text-gray-400 text-xs sm:text-sm">Leave a quick thumbs up to send a kudo!</p>
+            
+            <!-- Kudos Button and Counter -->
+            <button onclick="incrementKudos()" class="kudos-btn px-6 py-3 rounded-2xl glass-panel bg-cyan-500/10 border border-cyan-400/40 text-cyan-400 font-bold flex items-center gap-3 hover:scale-105 hover:bg-cyan-500/20 transition-all cursor-pointer">
+                <i id="kudos-icon" class="fa-solid fa-thumbs-up text-lg transition-transform"></i>
+                <span>Send Kudos</span>
+                <span id="kudos-count" class="px-2.5 py-0.5 rounded-full bg-cyan-500/20 text-white text-xs font-mono">12</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- Kudos Script Logic -->
+    <script>
+        // Load initial count from localStorage (defaults to 12 if first time)
+        let currentKudos = localStorage.getItem('portfolio_kudos') || 12;
+        document.getElementById('kudos-count').innerText = currentKudos;
+
+        function incrementKudos() {
+            currentKudos++;
+            localStorage.setItem('portfolio_kudos', currentKudos);
+            
+            const countDisplay = document.getElementById('kudos-count');
+            const icon = document.getElementById('kudos-icon');
+            
+            countDisplay.innerText = currentKudos;
+            
+            // Add a fun bounce animation on click
+            icon.classList.add('scale-125', 'text-white');
+            setTimeout(() => {
+                icon.classList.remove('scale-125', 'text-white');
+            }, 200);
+        }
+    </script>
+
 
     <!-- AOS Animation Library JS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
