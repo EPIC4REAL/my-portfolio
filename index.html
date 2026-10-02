@@ -177,26 +177,40 @@
         <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center w-full">
             <!-- Left Info -->
             <div class="lg:col-span-7 space-y-6 text-center lg:text-left" data-aos="fade-right" data-aos-duration="1000">
-                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-panel text-cyan-400 text-xs font-mono tracking-wide mx-auto lg:mx-0">
-                    <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span> PORTFOLIO
+                
+                <!-- Status Badge -->
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-panel text-cyan-400 text-xs font-mono tracking-wide mx-auto lg:mx-0 border border-cyan-500/30">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> OPEN TO WORK // MCA GRADUATE
                 </div>
+
+                <!-- Main Heading -->
                 <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight">
                     Hi, I'm <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500 neon-text-glow">Sanjo Wilson</span>
                 </h1>
+
+                <!-- Typing Effect Subtitle -->
+                <div class="text-cyan-300 font-mono text-sm sm:text-base tracking-wide h-6 flex items-center justify-center lg:justify-start">
+                    &gt;&nbsp;<span id="typing-text" class="border-r-2 border-cyan-400 pr-1 animate-pulse"></span>
+                </div>
+
+                <!-- Description Paragraph -->
                 <p class="text-gray-400 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto lg:mx-0">
                     Detail-oriented MCA graduate equipped with rigorous analytical, research, and formal documentation skills. Passionate about building robust systems, software verification, and turning complex data challenges into clean solutions.
                 </p>
+
+                <!-- Action Buttons -->
                 <div class="flex flex-wrap justify-center lg:justify-start gap-4 pt-2">
-                    <a href="#contact" class="px-6 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-black font-bold shadow-lg shadow-cyan-500/20 hover:scale-105 transition-transform flex items-center gap-2">
+                    <a href="#contact" class="px-6 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-black font-bold shadow-lg shadow-cyan-500/20 hover:scale-105 transition-transform flex items-center gap-2 text-sm sm:text-base">
                         <i class="fa-solid fa-paper-plane"></i> Get In Touch
                     </a>
-                    <a href="#projects" class="px-6 py-3 rounded-xl glass-panel text-white font-medium hover:border-cyan-400/50 transition-colors flex items-center gap-2">
+                    <a href="#projects" class="px-6 py-3 rounded-xl glass-panel text-white font-medium hover:border-cyan-400/50 transition-colors flex items-center gap-2 text-sm sm:text-base">
                         <i class="fa-solid fa-code"></i> Explore Projects
                     </a>
                 </div>
+
                 <!-- Quick Meta Badges -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-6 border-t border-white/10">
-                    <div class="glass-panel p-4 rounded-2xl flex items-center gap-3">
+                    <div class="glass-panel p-4 rounded-2xl flex items-center gap-3 hover:border-cyan-400/40 transition-colors">
                         <div class="w-10 h-10 rounded-xl bg-cyan-500/10 flex items-center justify-center text-cyan-400 flex-shrink-0">
                             <i class="fa-solid fa-location-dot"></i>
                         </div>
@@ -205,7 +219,7 @@
                             <div class="text-sm font-semibold text-gray-200">Thrissur, Kerala</div>
                         </div>
                     </div>
-                    <div class="glass-panel p-4 rounded-2xl flex items-center gap-3">
+                    <div class="glass-panel p-4 rounded-2xl flex items-center gap-3 hover:border-cyan-400/40 transition-colors">
                         <div class="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-400 flex-shrink-0">
                             <i class="fa-solid fa-phone"></i>
                         </div>
@@ -236,13 +250,23 @@
 
     <!-- Professional Summary Section -->
     <section id="about" class="py-20 px-4 sm:px-6 max-w-7xl mx-auto" data-aos="fade-up" data-aos-duration="800">
-        <div class="glass-panel p-8 sm:p-12 rounded-3xl relative overflow-hidden">
-            <div class="absolute top-0 right-0 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl pointer-events-none"></div>
-            <h2 class="text-2xl sm:text-3xl font-bold mb-6 flex items-center gap-3">
-                <span class="text-cyan-400 font-mono text-xl">01.</span> Professional Summary
-            </h2>
-            <p class="text-gray-300 text-lg leading-relaxed">
-                Detail-oriented MCA graduate equipped with rigorous analytical, research, and formal documentation skills. Highly experienced in testing, validating, and reviewing software solutions, managing structured databases, and compiling technical reports through dynamic academic frameworks and real-world internships. Proficient across Python, SQL, and database manipulation.
+        <div class="glass-panel p-8 sm:p-12 rounded-3xl relative overflow-hidden group hover:border-cyan-400/50 transition-all duration-300">
+            <!-- Background Glow Effect -->
+            <div class="absolute top-0 right-0 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl pointer-events-none group-hover:bg-cyan-500/10 transition-colors"></div>
+            
+            <!-- Section Header -->
+            <div class="flex items-center gap-3 mb-6">
+                <div class="w-10 h-10 rounded-xl bg-cyan-500/10 flex items-center justify-center text-cyan-400">
+                    <i class="fa-solid fa-user-astronaut text-base"></i>
+                </div>
+                <h2 class="text-2xl sm:text-3xl font-bold flex items-center gap-3">
+                    <span class="text-cyan-400 font-mono text-xl">01.</span> Professional Summary
+                </h2>
+            </div>
+
+            <!-- Summary Paragraph -->
+            <p class="text-gray-300 text-base sm:text-lg leading-relaxed relative z-10">
+                Detail-oriented <span class="text-cyan-400 font-semibold">MCA graduate</span> equipped with rigorous analytical, research, and formal documentation skills. Highly experienced in testing, validating, and reviewing software solutions, managing structured databases, and compiling technical reports through dynamic academic frameworks and real-world internships. Proficient across <span class="text-cyan-400 font-semibold">Python</span>, <span class="text-blue-400 font-semibold">SQL</span>, and database manipulation.
             </p>
         </div>
     </section>
@@ -345,7 +369,10 @@
             <!-- Project 1 -->
             <div class="glass-panel p-8 rounded-3xl flex flex-col justify-between" data-aos="zoom-in-up" data-aos-delay="100">
                 <div>
-                    <div class="text-xs font-mono text-cyan-400 mb-2">2026 // MAIN PROJECT</div>
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="text-xs font-mono text-cyan-400">2026 // MAIN PROJECT</span>
+                        <span class="px-2.5 py-0.5 rounded-full bg-cyan-500/10 text-cyan-400 text-xs font-mono border border-cyan-500/20">Full Stack</span>
+                    </div>
                     <h3 class="text-xl font-bold text-white mb-3">AI Powered Debug Reviewer</h3>
                     <p class="text-gray-300 text-sm leading-relaxed mb-6">
                         Developed a web platform with a code editor, AI code generator, image-to-code converter, and chatbot assistant, with secure login and session persistence. Maintained structured user records in SQLite and built an admin dashboard.
@@ -363,7 +390,10 @@
             <!-- Project 2 -->
             <div class="glass-panel p-8 rounded-3xl flex flex-col justify-between" data-aos="zoom-in-up" data-aos-delay="200">
                 <div>
-                    <div class="text-xs font-mono text-cyan-400 mb-2">COMPUTER VISION</div>
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="text-xs font-mono text-cyan-400">COMPUTER VISION</span>
+                        <span class="px-2.5 py-0.5 rounded-full bg-blue-500/10 text-blue-400 text-xs font-mono border border-blue-500/20">Computer Vision</span>
+                    </div>
                     <h3 class="text-xl font-bold text-white mb-3">Driver Drowsiness Detection System</h3>
                     <p class="text-gray-300 text-sm leading-relaxed mb-6">
                         Developed a real-time system that detects driver fatigue by analyzing facial landmarks to identify drowsiness indicators and trigger alerts.
@@ -380,7 +410,10 @@
             <!-- Project 3 -->
             <div class="glass-panel p-8 rounded-3xl flex flex-col justify-between" data-aos="zoom-in-up" data-aos-delay="300">
                 <div>
-                    <div class="text-xs font-mono text-cyan-400 mb-2">INTERNSHIP // MCA CAREER</div>
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="text-xs font-mono text-cyan-400">INTERNSHIP // MCA CAREER</span>
+                        <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-mono border border-emerald-500/20">UI/UX</span>
+                    </div>
                     <h3 class="text-xl font-bold text-white mb-3">Hexago Official Logistics Website</h3>
                     <p class="text-gray-300 text-sm leading-relaxed mb-6">
                         Built as part of an official career internship for Hexago Logistics and Transport. Focused heavily on user interface (UI) engineering, structuring company services, freight options, and logistics workflows into responsive web pages.
@@ -397,7 +430,10 @@
             <!-- Project 4 -->
             <div class="glass-panel p-8 rounded-3xl flex flex-col justify-between md:col-span-2 lg:col-span-3" data-aos="fade-up" data-aos-delay="200">
                 <div>
-                    <div class="text-xs font-mono text-cyan-400 mb-2">IEDC // SCMS COLLEGE, ALUVA</div>
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="text-xs font-mono text-cyan-400">IEDC // SCMS COLLEGE, ALUVA</span>
+                        <span class="px-2.5 py-0.5 rounded-full bg-purple-500/10 text-purple-400 text-xs font-mono border border-purple-500/20">UI/UX</span>
+                    </div>
                     <h3 class="text-xl font-bold text-white mb-3">iWiFi Furniture Industry Website</h3>
                     <p class="text-gray-300 text-sm leading-relaxed mb-6">
                         Developed under the Innovation & Entrepreneurship Development Centre (IEDC) at SCMS School of Technology and Management, Aluva. Designed with a primary focus on clean, modern UI to elegantly showcase industry furniture products, catalog collections, and brand aesthetics to prospective clients.
@@ -421,48 +457,77 @@
             <span class="text-cyan-400 font-mono text-xl">04.</span> Technical Skills & Competencies
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div class="glass-panel p-6 rounded-3xl" data-aos="fade-up" data-aos-delay="100">
-                <h3 class="text-cyan-400 font-mono text-sm mb-4">CORE SKILLS</h3>
-                <ul class="space-y-2 text-sm text-gray-300">
-                    <li>Data Analysis</li>
-                    <li>Data Cleaning</li>
-                    <li>Data Reporting</li>
-                    <li>Data Interpretation</li>
-                    <li>Software Testing</li>
-                    <li>Structured Documentation</li>
+            
+            <!-- Card 1: Core Skills -->
+            <div class="glass-panel p-6 rounded-3xl hover:border-cyan-400/50 transition-all duration-300 group" data-aos="fade-up" data-aos-delay="100">
+                <div class="flex items-center gap-3 mb-5">
+                    <div class="w-10 h-10 rounded-xl bg-cyan-500/10 flex items-center justify-center text-cyan-400 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-brain text-base"></i>
+                    </div>
+                    <h3 class="text-cyan-400 font-mono text-sm tracking-wider">CORE SKILLS</h3>
+                </div>
+                <ul class="space-y-3 text-sm text-gray-300">
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400 text-xs"></i> Data Analysis</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400 text-xs"></i> Data Cleaning</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400 text-xs"></i> Data Reporting</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400 text-xs"></i> Data Interpretation</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400 text-xs"></i> Software Testing</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400 text-xs"></i> Structured Documentation</li>
                 </ul>
             </div>
-            <div class="glass-panel p-6 rounded-3xl" data-aos="fade-up" data-aos-delay="200">
-                <h3 class="text-cyan-400 font-mono text-sm mb-4">TOOLS & TECH</h3>
-                <ul class="space-y-2 text-sm text-gray-300">
-                    <li>Microsoft Excel & Word</li>
-                    <li>Power BI, Tableu</li>
-                    <li>MySQL, Workbench</li>
-                    <li>PostgreSQL, MongoDB</li>
-                    <li>Git, GitHub</li>
-                    <li>Linux, Windows</li>
+
+            <!-- Card 2: Tools & Tech -->
+            <div class="glass-panel p-6 rounded-3xl hover:border-cyan-400/50 transition-all duration-300 group" data-aos="fade-up" data-aos-delay="200">
+                <div class="flex items-center gap-3 mb-5">
+                    <div class="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-400 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-toolbox text-base"></i>
+                    </div>
+                    <h3 class="text-cyan-400 font-mono text-sm tracking-wider">TOOLS & TECH</h3>
+                </div>
+                <ul class="space-y-3 text-sm text-gray-300">
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-file-excel text-emerald-400 text-xs"></i> Microsoft Excel & Word</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-chart-line text-amber-400 text-xs"></i> Power BI, Tableau</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-database text-cyan-400 text-xs"></i> MySQL, Workbench</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-server text-blue-400 text-xs"></i> PostgreSQL, MongoDB</li>
+                    <li class="flex items-center gap-2"><i class="fa-brands fa-git-alt text-orange-400 text-xs"></i> Git, GitHub</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-terminal text-purple-400 text-xs"></i> Linux, Windows</li>
                 </ul>
             </div>
-            <div class="glass-panel p-6 rounded-3xl" data-aos="fade-up" data-aos-delay="300">
-                <h3 class="text-cyan-400 font-mono text-sm mb-4">PROGRAMMING</h3>
-                <ul class="space-y-2 text-sm text-gray-300">
-                    <li>Python</li>
-                    <li>JavaScript</li>
-                    <li>Java</li>
-                    <li>C</li>
-                    <li>HTML, CSS</li>
+
+            <!-- Card 3: Programming -->
+            <div class="glass-panel p-6 rounded-3xl hover:border-cyan-400/50 transition-all duration-300 group" data-aos="fade-up" data-aos-delay="300">
+                <div class="flex items-center gap-3 mb-5">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-400 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-code text-base"></i>
+                    </div>
+                    <h3 class="text-cyan-400 font-mono text-sm tracking-wider">PROGRAMMING</h3>
+                </div>
+                <ul class="space-y-3 text-sm text-gray-300">
+                    <li class="flex items-center gap-2"><i class="fa-brands fa-python text-yellow-400 text-xs"></i> Python</li>
+                    <li class="flex items-center gap-2"><i class="fa-brands fa-js text-yellow-300 text-xs"></i> JavaScript</li>
+                    <li class="flex items-center gap-2"><i class="fa-brands fa-java text-rose-400 text-xs"></i> Java</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-c text-blue-400 text-xs"></i> C Programming</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-globe text-cyan-400 text-xs"></i> HTML, CSS</li>
                 </ul>
             </div>
-            <div class="glass-panel p-6 rounded-3xl" data-aos="fade-up" data-aos-delay="400">
-                <h3 class="text-cyan-400 font-mono text-sm mb-4">FRAMEWORKS</h3>
-                <ul class="space-y-2 text-sm text-gray-300">
-                    <li>Django</li>
-                    <li>Bootstrap</li>
-                    <li>Streamlit</li>
-                    <li>NumPy</li>
-                    <li>Pandas</li>
+
+            <!-- Card 4: Frameworks -->
+            <div class="glass-panel p-6 rounded-3xl hover:border-cyan-400/50 transition-all duration-300 group" data-aos="fade-up" data-aos-delay="400">
+                <div class="flex items-center gap-3 mb-5">
+                    <div class="w-10 h-10 rounded-xl bg-indigo-500/10 flex items-center justify-center text-indigo-400 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-layer-group text-base"></i>
+                    </div>
+                    <h3 class="text-cyan-400 font-mono text-sm tracking-wider">FRAMEWORKS</h3>
+                </div>
+                <ul class="space-y-3 text-sm text-gray-300">
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-leaf text-emerald-500 text-xs"></i> Django</li>
+                    <li class="flex items-center gap-2"><i class="fa-brands fa-bootstrap text-purple-400 text-xs"></i> Bootstrap</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-bolt text-red-400 text-xs"></i> Streamlit</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-cube text-cyan-400 text-xs"></i> NumPy</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-table text-blue-300 text-xs"></i> Pandas</li>
                 </ul>
             </div>
+
         </div>
     </section>
 
@@ -524,44 +589,60 @@
             <span class="text-cyan-400 font-mono text-xl">07.</span> Achievements & Certifications
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            
             <!-- Cert 1 -->
-            <div class="glass-panel p-8 rounded-3xl flex flex-col justify-between" data-aos="flip-left" data-aos-delay="100">
+            <div class="glass-panel p-8 rounded-3xl flex flex-col justify-between hover:border-cyan-400/50 transition-all duration-300 group" data-aos="flip-left" data-aos-delay="100">
                 <div>
-                    <div class="text-xs font-mono text-cyan-400 mb-2">SEP 2026</div>
-                    <h3 class="text-lg font-bold text-white mb-2">Python for Data Analytics</h3>
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-xs font-mono text-cyan-400">SEP 2026</span>
+                        <span class="px-2.5 py-0.5 rounded-full bg-cyan-500/10 text-cyan-400 text-xs font-mono border border-cyan-500/20">Data Analytics</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2 group-hover:text-cyan-300 transition-colors">Python for Data Analytics</h3>
                     <p class="text-gray-400 text-sm mb-6">Simplilearn certification covering advanced python analytics operations.</p>
                 </div>
                 <a href="https://drive.google.com/file/d/1uiS60XukK_h6pDo7OWWjWfFsW18ePszi/view" target="_blank" class="w-full py-2.5 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-sm font-semibold hover:bg-cyan-500/20 transition-colors flex items-center justify-center gap-2">
                     <i class="fa-solid fa-certificate"></i> View Certificate
                 </a>
             </div>
+
             <!-- Cert 2 -->
-            <div class="glass-panel p-8 rounded-3xl flex flex-col justify-between" data-aos="flip-left" data-aos-delay="200">
+            <div class="glass-panel p-8 rounded-3xl flex flex-col justify-between hover:border-cyan-400/50 transition-all duration-300 group" data-aos="flip-left" data-aos-delay="200">
                 <div>
-                    <div class="text-xs font-mono text-cyan-400 mb-2">NOV 2025</div>
-                    <h3 class="text-lg font-bold text-white mb-2">The Joy of Computing Using Python</h3>
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-xs font-mono text-cyan-400">NOV 2025</span>
+                        <span class="px-2.5 py-0.5 rounded-full bg-blue-500/10 text-blue-400 text-xs font-mono border border-blue-500/20">Programming</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2 group-hover:text-cyan-300 transition-colors">The Joy of Computing Using Python</h3>
                     <p class="text-gray-400 text-sm mb-6">NPTEL Elite Certification recognizing academic excellence in programming.</p>
                 </div>
                 <a href="https://drive.google.com/file/d/1uPsuw0oeC81XS3K-VuDw-dKnbow250qd/view" target="_blank" class="w-full py-2.5 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-sm font-semibold hover:bg-cyan-500/20 transition-colors flex items-center justify-center gap-2">
                     <i class="fa-solid fa-certificate"></i> View Certificate
                 </a>
             </div>
+
             <!-- Cert 3 -->
-            <div class="glass-panel p-8 rounded-3xl flex flex-col justify-between" data-aos="flip-left" data-aos-delay="300">
+            <div class="glass-panel p-8 rounded-3xl flex flex-col justify-between hover:border-cyan-400/50 transition-all duration-300 group" data-aos="flip-left" data-aos-delay="300">
                 <div>
-                    <div class="text-xs font-mono text-cyan-400 mb-2">RECOGNITION</div>
-                    <h3 class="text-lg font-bold text-white mb-2">IEDC Web Development & Work Readiness</h3>
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-xs font-mono text-cyan-400">RECOGNITION</span>
+                        <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-mono border border-emerald-500/20">Web Dev</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2 group-hover:text-cyan-300 transition-colors">IEDC Web Development & Work Readiness</h3>
                     <p class="text-gray-400 text-sm mb-6">Recognized for web development projects under IEDC and Kerala Knowledge Economy Mission.</p>
                 </div>
                 <a href="https://drive.google.com/file/d/1CPD0CiqHsVPS-KwjYQsM1ET2HW6VzwmV/view" target="_blank" class="w-full py-2.5 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-sm font-semibold hover:bg-cyan-500/20 transition-colors flex items-center justify-center gap-2">
                     <i class="fa-solid fa-award"></i> View Recognition
                 </a>
             </div>
-            <!-- Cert 4-->
-            <div class="glass-panel p-8 rounded-3xl flex flex-col justify-between" data-aos="flip-left" data-aos-delay="300">
+
+            <!-- Cert 4 -->
+            <div class="glass-panel p-8 rounded-3xl flex flex-col justify-between hover:border-cyan-400/50 transition-all duration-300 group" data-aos="flip-left" data-aos-delay="300">
                 <div>
-                    <div class="text-xs font-mono text-cyan-400 mb-2">CERTIFICATIONS</div>
-                    <h3 class="text-lg font-bold text-white mb-2">HackerRank Certifications</h3>
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-xs font-mono text-cyan-400">CERTIFICATIONS</span>
+                        <span class="px-2.5 py-0.5 rounded-full bg-indigo-500/10 text-indigo-400 text-xs font-mono border border-indigo-500/20">Badges</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2 group-hover:text-cyan-300 transition-colors">HackerRank Certifications</h3>
                     <p class="text-gray-400 text-sm mb-4">Verified credentials confirming core proficiency in web styling and relational database management.</p>
                     <div class="flex flex-wrap gap-2 mb-6">
                         <span class="px-2.5 py-1 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold">CSS (Basic)</span>
@@ -572,30 +653,37 @@
                     <i class="fa-solid fa-certificate"></i> View HackerRank Profile
                 </a>
             </div>
-            <!-- Cert 5-->
-             <!-- Cert / Achievement 2 -->
-            <div class="glass-panel p-8 rounded-3xl flex flex-col justify-between" data-aos="flip-left" data-aos-delay="200">
+
+            <!-- Cert 5 -->
+            <div class="glass-panel p-8 rounded-3xl flex flex-col justify-between hover:border-cyan-400/50 transition-all duration-300 group" data-aos="flip-left" data-aos-delay="200">
                 <div>
-                    <div class="text-xs font-mono text-cyan-400 mb-2">RECOGNITION</div>
-                    <h3 class="text-lg font-bold text-white mb-2">Best Sought After Student</h3>
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-xs font-mono text-cyan-400">RECOGNITION</span>
+                        <span class="px-2.5 py-0.5 rounded-full bg-purple-500/10 text-purple-400 text-xs font-mono border border-purple-500/20">Leadership</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2 group-hover:text-cyan-300 transition-colors">Best Sought After Student</h3>
                     <p class="text-gray-400 text-sm mb-6">Issued by College Principal, University of Calicut (Feb 2024). Recognized for academic success, leadership, and excellence.</p>
                 </div>
                 <button onclick="openCertificateModal('Best Sought After Student', 'Issued by College Principal, University of Calicut (Feb 2024). Dedicated and driven student recognized for academic success, leadership, and excellence.')" class="w-full py-2 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-semibold hover:bg-cyan-500/20 transition-colors flex items-center justify-center gap-2">
                     <i class="fa-solid fa-award"></i> View Recognition
                 </button>
             </div>
-            <!-- Cert 6-->
-             <!-- Cert / Achievement 1 -->
-            <div class="glass-panel p-8 rounded-3xl flex flex-col justify-between" data-aos="flip-left" data-aos-delay="100">
+
+            <!-- Cert 6 -->
+            <div class="glass-panel p-8 rounded-3xl flex flex-col justify-between hover:border-cyan-400/50 transition-all duration-300 group" data-aos="flip-left" data-aos-delay="100">
                 <div>
-                    <div class="text-xs font-mono text-cyan-400 mb-2">ACHIEVEMENT</div>
-                    <h3 class="text-lg font-bold text-white mb-2">Sub District Senior Hockey Player</h3>
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-xs font-mono text-cyan-400">ACHIEVEMENT</span>
+                        <span class="px-2.5 py-0.5 rounded-full bg-rose-500/10 text-rose-400 text-xs font-mono border border-rose-500/20">Sports</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2 group-hover:text-cyan-300 transition-colors">Sub District Senior Hockey Player</h3>
                     <p class="text-gray-400 text-sm mb-6">First in Mala Sub District Hockey Competition on behalf of Kerala School Games Association (Sep 2019).</p>
                 </div>
                 <button onclick="openCertificateModal('Sub District Senior Hockey Player', 'Issued by Kerala School Games Association (Sep 2019). Secured First place in the Mala Sub District Hockey Competition.')" class="w-full py-2 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-semibold hover:bg-cyan-500/20 transition-colors flex items-center justify-center gap-2">
                     <i class="fa-solid fa-trophy"></i> View Recognition
                 </button>
             </div>
+
         </div>
     </section>
 
@@ -706,13 +794,13 @@
         </div>
     </div>
 
-    <!-- Floating WhatsApp Button on the Left Side with Animation -->
-        <a href="https://wa.me/916238552309?text=Hi%20Sanjo,%20I%20saw%20your%20portfolio%20and%20want%20to%20connect!" 
+    <!-- Floating WhatsApp Button with Exact Arbitrary Bottom Spacing -->
+    <a href="https://wa.me/916238552309?text=Hi%20Sanjo,%20I%20saw%20your%20portfolio%20and%20want%20to%20connect!" 
         target="_blank" 
-        class="fixed bottom-22 sm:bottom-6 left-6 z-50 w-12 h-12 rounded-2xl glass-panel bg-emerald-950/90 border border-emerald-500/40 text-emerald-400 flex items-center justify-center shadow-lg hover:scale-110 hover:border-emerald-400 transition-all group floating-whatsapp" 
+        class="fixed bottom-6 left-6 z-50 w-12 h-12 rounded-2xl glass-panel bg-emerald-950/90 border border-emerald-500/40 text-emerald-400 flex items-center justify-center shadow-lg hover:scale-110 hover:border-emerald-400 transition-all group floating-whatsapp" 
         title="Chat on WhatsApp">
             <i class="fa-brands fa-whatsapp text-xl group-hover:scale-110 transition-transform"></i>
-        </a>
+    </a>
 
     <!-- Interactive "Leave a Kudos" Section -->
     <section class="py-12 px-4 sm:px-6 max-w-xl mx-auto text-center" data-aos="fade-up">
@@ -778,6 +866,48 @@
                 icon.classList.add('fa-xmark');
             }
         }
+
+        // Typing Effect Logic for Hero Subtitle
+        const words = ["MCA Graduate", "Software Developer", "Data Analyst", "IT Support"];
+        let i = 0;
+        let timer;
+
+        function typingEffect() {
+            let word = words[i].split("");
+            var loopTyping = function() {
+                if (word.length > 0) {
+                    document.getElementById('typing-text').innerHTML += word.shift();
+                } else {
+                    setTimeout(deletingEffect, 2000);
+                    return;
+                }
+                timer = setTimeout(loopTyping, 100);
+            };
+            loopTyping();
+        }
+
+        function deletingEffect() {
+            let word = words[i].split("");
+            var loopDeleting = function() {
+                if (word.length > 0) {
+                    word.pop();
+                    document.getElementById('typing-text').innerHTML = word.join("");
+                } else {
+                    if (words.length > (i + 1)) {
+                        i++;
+                    } else {
+                        i = 0;
+                    }
+                    setTimeout(typingEffect, 500);
+                    return;
+                }
+                timer = setTimeout(loopDeleting, 50,);
+            };
+            loopDeleting();
+        }
+
+        // Start the typing effect when the page loads
+        typingEffect();
 
         // Certificate Modal functions
         function openCertificateModal(title, description) {
