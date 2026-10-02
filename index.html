@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sanjo Wilson | Interactive Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        cyber: {
+                            900: '#030712',
+                            800: '#0b0f19',
+                            700: '#111827',
+                            600: '#1f2937',
+                            accent: '#00f2fe',
+                            secondary: '#4facfe',
+                            neon: '#10b981'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <!-- AOS Animation Library CDN -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #030712;
+            color: #f3f4f6;
+            overflow-x: hidden;
+        }
+        .code-font {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .glass-panel {
+            background: rgba(17, 24, 39, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-panel:hover {
+            border-color: rgba(0, 242, 254, 0.4);
+            box-shadow: 0 0 35px rgba(0, 242, 254, 0.25);
+            transform: translateY(-5px);
+        }
+        .neon-text-glow {
+            text-shadow: 0 0 25px rgba(0, 242, 254, 0.6);
+        }
+        .neon-border-glow {
+            box-shadow: 0 0 30px rgba(79, 172, 254, 0.35);
+        }
+        #particle-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        .modal {
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        .modal.hidden {
+            opacity: 0;
+            pointer-events: none;
+            transform: scale(0.95);
+        }
+        .modal:not(.hidden) {
+            opacity: 1;
+            pointer-events: auto;
+            transform: scale(1);
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #030712;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1f2937;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #374151;
+        }
+    </style>
+</head>
+<body class="selection:bg-cyan-500 selection:text-black">
+
+    <!-- Interactive Particle Background Canvas -->
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- Top Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass-panel border-b border-white/10 px-4 sm:px-6 py-4 transition-all duration-300">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="#" class="text-base sm:text-lg font-bold code-font tracking-wider flex items-center gap-2 group">
+                <span class="text-cyan-400 group-hover:rotate-12 transition-transform">&lt;</span>SANJO<span class="text-blue-400">WILSON</span><span class="text-cyan-400 group-hover:-rotate-12 transition-transform">/&gt;</span>
+            </a>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center space-x-6 text-sm font-medium text-gray-300">
+                <a href="#about" class="hover:text-cyan-400 transition-colors">About</a>
+                <a href="#experience" class="hover:text-cyan-400 transition-colors">Experience</a>
+                <a href="#projects" class="hover:text-cyan-400 transition-colors">Projects</a>
+                <a href="#skills" class="hover:text-cyan-400 transition-colors">Skills</a>
+                <a href="#education" class="hover:text-cyan-400 transition-colors">Education</a>
+                <a href="#achievements" class="hover:text-cyan-400 transition-colors">Achievements</a>
+                <a href="#contact" class="hover:text-cyan-400 transition-colors">Contact</a>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <a href="https://www.linkedin.com/in/sanjo-wilson05042003" target="_blank" class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl glass-panel flex items-center justify-center text-cyan-400 hover:scale-110 transition-transform">
+                    <i class="fa-brands fa-linkedin-in text-sm sm:text-base"></i>
+                </a>
+                <a href="https://www.instagram.com/__s.a.n.j.o__" target="_blank" class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl glass-panel flex items-center justify-center text-pink-400 hover:scale-110 transition-transform">
+                    <i class="fa-brands fa-instagram text-sm sm:text-base"></i>
+                </a>
+                <a href="https://github.com/EPIC4REAL" target="_blank" class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl glass-panel flex items-center justify-center text-blue-400 hover:scale-110 transition-transform">
+                    <i class="fa-brands fa-github text-sm sm:text-base"></i>
+                </a>
+                <!-- Mobile Menu Button -->
+                <button onclick="toggleMobileMenu()" class="md:hidden w-9 h-9 rounded-xl glass-panel flex items-center justify-center text-cyan-400 focus:outline-none">
+                    <i id="menuIcon" class="fa-solid fa-bars text-lg"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Dropdown Navigation Menu Drawer -->
+        <div id="mobileMenu" class="hidden md:hidden absolute top-full left-0 right-0 glass-panel border-b border-white/10 px-6 py-5 flex flex-col space-y-4 text-base font-medium text-gray-200 shadow-2xl">
+            <a href="#about" onclick="toggleMobileMenu()" class="hover:text-cyan-400 transition-colors">About</a>
+            <a href="#experience" onclick="toggleMobileMenu()" class="hover:text-cyan-400 transition-colors">Experience</a>
+            <a href="#projects" onclick="toggleMobileMenu()" class="hover:text-cyan-400 transition-colors">Projects</a>
+            <a href="#skills" onclick="toggleMobileMenu()" class="hover:text-cyan-400 transition-colors">Skills</a>
+            <a href="#education" onclick="toggleMobileMenu()" class="hover:text-cyan-400 transition-colors">Education</a>
+            <a href="#achievements" onclick="toggleMobileMenu()" class="hover:text-cyan-400 transition-colors">Achievements</a>
+            <a href="#contact" onclick="toggleMobileMenu()" class="hover:text-cyan-400 transition-colors">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="min-h-screen flex items-center justify-center pt-28 pb-12 px-4 sm:px-6 relative">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center w-full">
+            <!-- Left Info -->
+            <div class="lg:col-span-7 space-y-6 text-center lg:text-left" data-aos="fade-right" data-aos-duration="1000">
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-panel text-cyan-400 text-xs font-mono tracking-wide mx-auto lg:mx-0">
+                    <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span> PORTFOLIO
+                </div>
+                <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight">
+                    Hi, I'm <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500 neon-text-glow">Sanjo Wilson</span>
+                </h1>
+                <p class="text-gray-400 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                    Detail-oriented MCA graduate equipped with rigorous analytical, research, and formal documentation skills. Passionate about building robust systems, software verification, and turning complex data challenges into clean solutions.
+                </p>
+                <div class="flex flex-wrap justify-center lg:justify-start gap-4 pt-2">
+                    <a href="#contact" class="px-6 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-black font-bold shadow-lg shadow-cyan-500/20 hover:scale-105 transition-transform flex items-center gap-2">
+                        <i class="fa-solid fa-paper-plane"></i> Get In Touch
+                    </a>
+                    <a href="#projects" class="px-6 py-3 rounded-xl glass-panel text-white font-medium hover:border-cyan-400/50 transition-colors flex items-center gap-2">
+                        <i class="fa-solid fa-code"></i> Explore Projects
+                    </a>
+                </div>
+                <!-- Quick Meta Badges -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-6 border-t border-white/10">
+                    <div class="glass-panel p-4 rounded-2xl flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-cyan-500/10 flex items-center justify-center text-cyan-400 flex-shrink-0">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <div class="text-left">
+                            <div class="text-xs text-gray-400 font-mono">LOCATION</div>
+                            <div class="text-sm font-semibold text-gray-200">Thrissur, Kerala</div>
+                        </div>
+                    </div>
+                    <div class="glass-panel p-4 rounded-2xl flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-400 flex-shrink-0">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <div class="text-left">
+                            <div class="text-xs text-gray-400 font-mono">DIRECT LINE</div>
+                            <a href="tel:+916238552309" class="text-sm font-semibold text-cyan-400 hover:underline">+91 6238552309</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Right Avatar Card with Interactive Hover Effect -->
+            <!-- Right Avatar Card with Personal Photo & Interactive Hover Effect -->
+            <div class="lg:col-span-5 flex justify-center" data-aos="fade-left" data-aos-duration="1000">
+                <div class="relative w-72 h-80 sm:w-80 sm:h-96 rounded-3xl glass-panel p-4 neon-border-glow group cursor-pointer hover:rotate-1 transition-transform" onclick="triggerEasterEgg()">
+                    <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-blue-600/10 rounded-3xl"></div>
+                    <div class="w-full h-full rounded-2xl bg-gray-900 overflow-hidden relative flex items-center justify-center border border-white/10">
+                        <!-- User Profile Picture -->
+                        <img src="assets/profile_pic.jpeg" alt="Sanjo Wilson" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-950 via-transparent to-transparent opacity-60 pointer-events-none"></div>
+                        <div class="absolute bottom-4 left-4 right-4 text-center pointer-events-none">
+                            <span class="text-xs font-mono text-cyan-400 tracking-wider bg-black/60 px-3 py-1 rounded-full backdrop-blur-md border border-cyan-500/30">SANJO WILSON</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Professional Summary Section -->
+    <section id="about" class="py-20 px-4 sm:px-6 max-w-7xl mx-auto" data-aos="fade-up" data-aos-duration="800">
+        <div class="glass-panel p-8 sm:p-12 rounded-3xl relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl pointer-events-none"></div>
+            <h2 class="text-2xl sm:text-3xl font-bold mb-6 flex items-center gap-3">
+                <span class="text-cyan-400 font-mono text-xl">01.</span> Professional Summary
+            </h2>
+            <p class="text-gray-300 text-lg leading-relaxed">
+                Detail-oriented MCA graduate equipped with rigorous analytical, research, and formal documentation skills. Highly experienced in testing, validating, and reviewing software solutions, managing structured databases, and compiling technical reports through dynamic academic frameworks and real-world internships. Proficient across Python, SQL, and database manipulation.
+            </p>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-20 px-4 sm:px-6 max-w-7xl mx-auto">
+        <h2 class="text-2xl sm:text-3xl font-bold mb-12 flex items-center gap-3" data-aos="fade-right">
+            <span class="text-cyan-400 font-mono text-xl">02.</span> Professional & Internship Experience
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Experience 1 -->
+            <div class="glass-panel p-8 rounded-3xl flex flex-col justify-between border-cyan-500/30" data-aos="fade-up" data-aos-delay="100">
+                <div>
+                    <div class="flex flex-col sm:flex-row justify-between items-start gap-2 mb-4">
+                        <div>
+                            <h3 class="text-xl font-bold text-white">Software Development Intern</h3>
+                            <div class="text-cyan-400 text-sm font-mono mt-1">Hexago Logistics and Transport, Kochi</div>
+                        </div>
+                        <span class="px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 text-xs font-mono">Dec 2025 - Mar 2026</span>
+                    </div>
+                    <ul class="space-y-3 text-gray-300 text-sm list-disc pl-4">
+                        <li>Built the company's logistics website using HTML, CSS, Bootstrap, and JavaScript, organizing company and service information into clear, structured pages.</li>
+                        <li>Tested website features with the team before deployment and verified layout and content accuracy across sections.</li>
+                        <li>Collaborated with team members to incorporate feedback and keep project work consistent.</li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Experience 2 -->
+            <div class="glass-panel p-8 rounded-3xl flex flex-col justify-between" data-aos="fade-up" data-aos-delay="200">
+                <div>
+                    <div class="flex flex-col sm:flex-row justify-between items-start gap-2 mb-4">
+                        <div>
+                            <h3 class="text-xl font-bold text-white">Software Testing Intern</h3>
+                            <div class="text-cyan-400 text-sm font-mono mt-1">Global Quest Technologies, Bangalore</div>
+                        </div>
+                        <span class="px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 text-xs font-mono">May 2024 - Jul 2024</span>
+                    </div>
+                    <ul class="space-y-3 text-gray-300 text-sm list-disc pl-4">
+                        <li>Completed training in software testing methodologies as part of a full-stack testing curriculum.</li>
+                        <li>Validated application workflows and analyzed system outputs for reliability.</li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Experience 3 -->
+            <div class="glass-panel p-8 rounded-3xl flex flex-col justify-between" data-aos="fade-up" data-aos-delay="100">
+                <div>
+                    <div class="flex flex-col sm:flex-row justify-between items-start gap-2 mb-4">
+                        <div>
+                            <h3 class="text-xl font-bold text-white">Java Full Stack Development Intern</h3>
+                            <div class="text-cyan-400 text-sm font-mono mt-1">Global Quest Technologies, Bangalore</div>
+                        </div>
+                        <span class="px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 text-xs font-mono">Feb 2024 - Apr 2024</span>
+                    </div>
+                    <ul class="space-y-3 text-gray-300 text-sm list-disc pl-4">
+                        <li>Completed training in Java-based full-stack development covering front-end, back-end, and database integration.</li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Experience 4 -->
+            <div class="glass-panel p-8 rounded-3xl flex flex-col justify-between" data-aos="fade-up" data-aos-delay="200">
+                <div>
+                    <div class="flex flex-col sm:flex-row justify-between items-start gap-2 mb-4">
+                        <div>
+                            <h3 class="text-xl font-bold text-white">Robotics Coordinator Intern</h3>
+                            <div class="text-cyan-400 text-sm font-mono mt-1">Inker Robotics, Thrissur</div>
+                        </div>
+                        <span class="px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 text-xs font-mono">Apr 2023 - May 2023</span>
+                    </div>
+                    <ul class="space-y-3 text-gray-300 text-sm list-disc pl-4">
+                        <li>Coordinated robotics-related technical activities, building cross-functional collaboration and project coordination skills.</li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Experience 5 -->
+            <div class="glass-panel p-8 rounded-3xl flex flex-col justify-between md:col-span-2" data-aos="fade-up" data-aos-delay="300">
+                <div>
+                    <div class="flex flex-col sm:flex-row justify-between items-start gap-2 mb-4">
+                        <div>
+                            <h3 class="text-xl font-bold text-white">Billing Staff (Part-Time)</h3>
+                            <div class="text-cyan-400 text-sm font-mono mt-1">Zasnak Private Limited (Kesto Supermarket)</div>
+                        </div>
+                        <span class="px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 text-xs font-mono">Jun 2021 - Apr 2023</span>
+                    </div>
+                    <ul class="space-y-3 text-gray-300 text-sm list-disc pl-4">
+                        <li>Handled retail sales floor coordination and customer assistance to maintain high service standards.</li>
+                        <li>Managed point-of-sale transactions, accurate billing processing, and cash handling workflows.</li>
+                        <li>Supervised inventory arrangement, product packaging, and stock sorting operations.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 px-4 sm:px-6 max-w-7xl mx-auto">
+        <h2 class="text-2xl sm:text-3xl font-bold mb-12 flex items-center gap-3" data-aos="fade-right">
+            <span class="text-cyan-400 font-mono text-xl">03.</span> Featured Projects
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Project 1 -->
+            <div class="glass-panel p-8 rounded-3xl flex flex-col justify-between" data-aos="zoom-in-up" data-aos-delay="100">
+                <div>
+                    <div class="text-xs font-mono text-cyan-400 mb-2">2026 // MAIN PROJECT</div>
+                    <h3 class="text-xl font-bold text-white mb-3">AI Powered Debug Reviewer</h3>
+                    <p class="text-gray-300 text-sm leading-relaxed mb-6">
+                        Developed a web platform with a code editor, AI code generator, image-to-code converter, and chatbot assistant, with secure login and session persistence. Maintained structured user records in SQLite and built an admin dashboard.
+                    </p>
+                </div>
+                <div>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="px-2.5 py-1 rounded-md bg-white/5 text-xs font-mono text-gray-300">Python</span>
+                        <span class="px-2.5 py-1 rounded-md bg-white/5 text-xs font-mono text-gray-300">Streamlit</span>
+                        <span class="px-2.5 py-1 rounded-md bg-white/5 text-xs font-mono text-gray-300">SQLite</span>
+                        <span class="px-2.5 py-1 rounded-md bg-white/5 text-xs font-mono text-gray-300">Groq AI</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Project 2 -->
+            <div class="glass-panel p-8 rounded-3xl flex flex-col justify-between" data-aos="zoom-in-up" data-aos-delay="200">
+                <div>
+                    <div class="text-xs font-mono text-cyan-400 mb-2">COMPUTER VISION</div>
+                    <h3 class="text-xl font-bold text-white mb-3">Driver Drowsiness Detection System</h3>
+                    <p class="text-gray-300 text-sm leading-relaxed mb-6">
+                        Developed a real-time system that detects driver fatigue by analyzing facial landmarks to identify drowsiness indicators and trigger alerts.
+                    </p>
+                </div>
+                <div>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="px-2.5 py-1 rounded-md bg-white/5 text-xs font-mono text-gray-300">Python</span>
+                        <span class="px-2.5 py-1 rounded-md bg-white/5 text-xs font-mono text-gray-300">Computer Vision</span>
+                        <span class="px-2.5 py-1 rounded-md bg-white/5 text-xs font-mono text-gray-300">Facial Landmarks</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Project 3 -->
+            <div class="glass-panel p-8 rounded-3xl flex flex-col justify-between" data-aos="zoom-in-up" data-aos-delay="300">
+                <div>
+                    <div class="text-xs font-mono text-cyan-400 mb-2">INTERNSHIP // MCA CAREER</div>
+                    <h3 class="text-xl font-bold text-white mb-3">Hexago Official Logistics Website</h3>
+                    <p class="text-gray-300 text-sm leading-relaxed mb-6">
+                        Built as part of an official career internship for Hexago Logistics and Transport. Focused heavily on user interface (UI) engineering, structuring company services, freight options, and logistics workflows into responsive web pages.
+                    </p>
+                </div>
+                <div>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="px-2.5 py-1 rounded-md bg-white/5 text-xs font-mono text-gray-300">HTML/CSS</span>
+                        <span class="px-2.5 py-1 rounded-md bg-white/5 text-xs font-mono text-gray-300">Bootstrap</span>
+                        <span class="px-2.5 py-1 rounded-md bg-white/5 text-xs font-mono text-gray-300">UI/UX</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Project 4 -->
+            <div class="glass-panel p-8 rounded-3xl flex flex-col justify-between md:col-span-2 lg:col-span-3" data-aos="fade-up" data-aos-delay="200">
+                <div>
+                    <div class="text-xs font-mono text-cyan-400 mb-2">IEDC // SCMS COLLEGE, ALUVA</div>
+                    <h3 class="text-xl font-bold text-white mb-3">iWiFi Furniture Industry Website</h3>
+                    <p class="text-gray-300 text-sm leading-relaxed mb-6">
+                        Developed under the Innovation & Entrepreneurship Development Centre (IEDC) at SCMS School of Technology and Management, Aluva. Designed with a primary focus on clean, modern UI to elegantly showcase industry furniture products, catalog collections, and brand aesthetics to prospective clients.
+                    </p>
+                </div>
+                <div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-2.5 py-1 rounded-md bg-white/5 text-xs font-mono text-gray-300">Frontend UI</span>
+                        <span class="px-2.5 py-1 rounded-md bg-white/5 text-xs font-mono text-gray-300">JavaScript</span>
+                        <span class="px-2.5 py-1 rounded-md bg-white/5 text-xs font-mono text-gray-300">Responsive Design</span>
+                        <span class="px-2.5 py-1 rounded-md bg-white/5 text-xs font-mono text-gray-300">IEDC Project</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Skills Section -->
+    <section id="skills" class="py-20 px-4 sm:px-6 max-w-7xl mx-auto">
+        <h2 class="text-2xl sm:text-3xl font-bold mb-12 flex items-center gap-3" data-aos="fade-right">
+            <span class="text-cyan-400 font-mono text-xl">04.</span> Technical Skills & Competencies
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="glass-panel p-6 rounded-3xl" data-aos="fade-up" data-aos-delay="100">
+                <h3 class="text-cyan-400 font-mono text-sm mb-4">CORE SKILLS</h3>
+                <ul class="space-y-2 text-sm text-gray-300">
+                    <li>Data Analysis</li>
+                    <li>Data Cleaning</li>
+                    <li>Data Reporting</li>
+                    <li>Data Interpretation</li>
+                    <li>Software Testing</li>
+                    <li>Structured Documentation</li>
+                </ul>
+            </div>
+            <div class="glass-panel p-6 rounded-3xl" data-aos="fade-up" data-aos-delay="200">
+                <h3 class="text-cyan-400 font-mono text-sm mb-4">TOOLS & TECH</h3>
+                <ul class="space-y-2 text-sm text-gray-300">
+                    <li>Microsoft Excel & Word</li>
+                    <li>Power BI, Tableu</li>
+                    <li>MySQL, Workbench</li>
+                    <li>PostgreSQL, MongoDB</li>
+                    <li>Git, GitHub</li>
+                    <li>Linux, Windows</li>
+                </ul>
+            </div>
+            <div class="glass-panel p-6 rounded-3xl" data-aos="fade-up" data-aos-delay="300">
+                <h3 class="text-cyan-400 font-mono text-sm mb-4">PROGRAMMING</h3>
+                <ul class="space-y-2 text-sm text-gray-300">
+                    <li>Python</li>
+                    <li>JavaScript</li>
+                    <li>Java</li>
+                    <li>C</li>
+                    <li>HTML, CSS</li>
+                </ul>
+            </div>
+            <div class="glass-panel p-6 rounded-3xl" data-aos="fade-up" data-aos-delay="400">
+                <h3 class="text-cyan-400 font-mono text-sm mb-4">FRAMEWORKS</h3>
+                <ul class="space-y-2 text-sm text-gray-300">
+                    <li>Django</li>
+                    <li>Bootstrap</li>
+                    <li>Streamlit</li>
+                    <li>NumPy</li>
+                    <li>Pandas</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education, Academic Certificates & Research Section -->
+    <section id="education" class="py-20 px-4 sm:px-6 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
+            <!-- Education & Degree Certificates -->
+            <div data-aos="fade-right">
+                <h2 class="text-2xl sm:text-3xl font-bold mb-8 flex items-center gap-3">
+                    <span class="text-cyan-400 font-mono text-xl">05.</span> Education & Degrees
+                </h2>
+                <div class="space-y-6">
+                    <div class="glass-panel p-6 rounded-3xl flex flex-col justify-between">
+                        <div>
+                            <div class="text-xs font-mono text-cyan-400 mb-1">2024 - 2026</div>
+                            <h3 class="text-lg font-bold text-white">Master of Computer Applications (MCA)</h3>
+                            <p class="text-gray-400 text-sm mt-1 mb-4">SCMS School of Technology and Management (MG University), Aluva, Ernakulam</p>
+                        </div>
+                        <button onclick="openCertificateModal('Master of Computer Applications (MCA Degree)', 'Institution: SCMS School of Technology and Management (MG University), Aluva, Ernakulam. Period: 2024 - 2026. Academic record and credential verified for Sanjo Wilson.')" class="w-full py-2 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-semibold hover:bg-cyan-500/20 transition-colors flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-graduation-cap"></i> View MCA Certificate
+                        </button>
+                    </div>
+                    <div class="glass-panel p-6 rounded-3xl flex flex-col justify-between">
+                        <div>
+                            <div class="text-xs font-mono text-cyan-400 mb-1">2021 - 2024</div>
+                            <h3 class="text-lg font-bold text-white">Bachelor of Computer Applications (BCA)</h3>
+                            <p class="text-gray-400 text-sm mt-1 mb-4">MET's College of Advanced Studies (University of Calicut), Mala, Thrissur</p>
+                        </div>
+                        <button onclick="openCertificateModal('Bachelor of Computer Applications (BCA Degree)', 'Institution: MET\'s College of Advanced Studies (University of Calicut), Mala, Thrissur. Period: 2021 - 2024. Academic record and credential verified for Sanjo Wilson.')" class="w-full py-2 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-semibold hover:bg-cyan-500/20 transition-colors flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-graduation-cap"></i> View BCA Certificate
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Research Work & Seminar Article -->
+            <div data-aos="fade-left">
+                <h2 class="text-2xl sm:text-3xl font-bold mb-8 flex items-center gap-3">
+                    <span class="text-cyan-400 font-mono text-xl">06.</span> Research Work & Seminar Article
+                </h2>
+                <div class="space-y-6">
+                    <div class="glass-panel p-6 rounded-3xl flex flex-col justify-between h-full">
+                        <div>
+                            <div class="text-xs font-mono text-cyan-400 mb-1">SEMINAR ARTICLE // 2026</div>
+                            <h3 class="text-lg font-bold text-white">AI-Driven Automated Evidence Correlation in Cyber Forensics</h3>
+                            <p class="text-gray-400 text-sm mt-1 mb-4">Comprehensive review authored by Sanjo Wilson proposing an AI-driven automated evidence correlation framework integrating multimodal feature extraction, knowledge graphs, and GNNs.</p>
+                        </div>
+                        <a href="assets/Seminar_Article.pdf" target="_blank" class="w-full py-2 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-semibold hover:bg-cyan-500/20 transition-colors flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-file-lines"></i> Read Seminar Article
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements & Certifications Section -->
+    <section id="achievements" class="py-20 px-4 sm:px-6 max-w-7xl mx-auto">
+        <h2 class="text-2xl sm:text-3xl font-bold mb-12 flex items-center gap-3" data-aos="fade-right">
+            <span class="text-cyan-400 font-mono text-xl">07.</span> Achievements & Certifications
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Cert 1 -->
+            <div class="glass-panel p-8 rounded-3xl flex flex-col justify-between" data-aos="flip-left" data-aos-delay="100">
+                <div>
+                    <div class="text-xs font-mono text-cyan-400 mb-2">SEP 2026</div>
+                    <h3 class="text-lg font-bold text-white mb-2">Python for Data Analytics</h3>
+                    <p class="text-gray-400 text-sm mb-6">Simplilearn certification covering advanced python analytics operations.</p>
+                </div>
+                <a href="https://drive.google.com/file/d/1uiS60XukK_h6pDo7OWWjWfFsW18ePszi/view" target="_blank" class="w-full py-2.5 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-sm font-semibold hover:bg-cyan-500/20 transition-colors flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-certificate"></i> View Certificate
+                </a>
+            </div>
+            <!-- Cert 2 -->
+            <div class="glass-panel p-8 rounded-3xl flex flex-col justify-between" data-aos="flip-left" data-aos-delay="200">
+                <div>
+                    <div class="text-xs font-mono text-cyan-400 mb-2">NOV 2025</div>
+                    <h3 class="text-lg font-bold text-white mb-2">The Joy of Computing Using Python</h3>
+                    <p class="text-gray-400 text-sm mb-6">NPTEL Elite Certification recognizing academic excellence in programming.</p>
+                </div>
+                <a href="https://drive.google.com/file/d/1uPsuw0oeC81XS3K-VuDw-dKnbow250qd/view" target="_blank" class="w-full py-2.5 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-sm font-semibold hover:bg-cyan-500/20 transition-colors flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-certificate"></i> View Certificate
+                </a>
+            </div>
+            <!-- Cert 3 -->
+            <div class="glass-panel p-8 rounded-3xl flex flex-col justify-between" data-aos="flip-left" data-aos-delay="300">
+                <div>
+                    <div class="text-xs font-mono text-cyan-400 mb-2">RECOGNITION</div>
+                    <h3 class="text-lg font-bold text-white mb-2">IEDC Web Development & Work Readiness</h3>
+                    <p class="text-gray-400 text-sm mb-6">Recognized for web development projects under IEDC and Kerala Knowledge Economy Mission.</p>
+                </div>
+                <a href="https://drive.google.com/file/d/1CPD0CiqHsVPS-KwjYQsM1ET2HW6VzwmV/view" target="_blank" class="w-full py-2.5 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-sm font-semibold hover:bg-cyan-500/20 transition-colors flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-award"></i> View Recognition
+                </a>
+            </div>
+            <!-- Cert 4-->
+            <div class="glass-panel p-8 rounded-3xl flex flex-col justify-between" data-aos="flip-left" data-aos-delay="300">
+                <div>
+                    <div class="text-xs font-mono text-cyan-400 mb-2">CERTIFICATIONS</div>
+                    <h3 class="text-lg font-bold text-white mb-2">HackerRank Certifications</h3>
+                    <p class="text-gray-400 text-sm mb-4">Verified credentials confirming core proficiency in web styling and relational database management.</p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="px-2.5 py-1 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold">CSS (Basic)</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold">SQL (Basic)</span>
+                    </div>
+                </div>
+                <a href="https://www.hackerrank.com/profile/sanjowilson2003" target="_blank" class="w-full py-2.5 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-sm font-semibold hover:bg-cyan-500/20 transition-colors flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-certificate"></i> View HackerRank Profile
+                </a>
+            </div>
+            <!-- Cert 5-->
+             <!-- Cert / Achievement 2 -->
+            <div class="glass-panel p-8 rounded-3xl flex flex-col justify-between" data-aos="flip-left" data-aos-delay="200">
+                <div>
+                    <div class="text-xs font-mono text-cyan-400 mb-2">RECOGNITION</div>
+                    <h3 class="text-lg font-bold text-white mb-2">Best Sought After Student</h3>
+                    <p class="text-gray-400 text-sm mb-6">Issued by College Principal, University of Calicut (Feb 2024). Recognized for academic success, leadership, and excellence.</p>
+                </div>
+                <button onclick="openCertificateModal('Best Sought After Student', 'Issued by College Principal, University of Calicut (Feb 2024). Dedicated and driven student recognized for academic success, leadership, and excellence.')" class="w-full py-2 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-semibold hover:bg-cyan-500/20 transition-colors flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-award"></i> View Recognition
+                </button>
+            </div>
+            <!-- Cert 6-->
+             <!-- Cert / Achievement 1 -->
+            <div class="glass-panel p-8 rounded-3xl flex flex-col justify-between" data-aos="flip-left" data-aos-delay="100">
+                <div>
+                    <div class="text-xs font-mono text-cyan-400 mb-2">ACHIEVEMENT</div>
+                    <h3 class="text-lg font-bold text-white mb-2">Sub District Senior Hockey Player</h3>
+                    <p class="text-gray-400 text-sm mb-6">First in Mala Sub District Hockey Competition on behalf of Kerala School Games Association (Sep 2019).</p>
+                </div>
+                <button onclick="openCertificateModal('Sub District Senior Hockey Player', 'Issued by Kerala School Games Association (Sep 2019). Secured First place in the Mala Sub District Hockey Competition.')" class="w-full py-2 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-semibold hover:bg-cyan-500/20 transition-colors flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-trophy"></i> View Recognition
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-4 sm:px-6 max-w-4xl mx-auto text-center" data-aos="zoom-in" data-aos-duration="800">
+        <div class="glass-panel p-8 sm:p-16 rounded-3xl relative">
+            <h2 class="text-3xl sm:text-4xl font-bold mb-4">Let's Connect</h2>
+            <p class="text-gray-400 max-w-xl mx-auto mb-8 text-sm sm:text-base">
+                I am actively seeking new opportunities to apply my technical and analytical skills. Feel free to reach out directly via email, phone, or LinkedIn.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="mailto:sanjowilsonofficial@gmail.com" class="px-5 py-3 rounded-xl bg-cyan-500 text-black font-bold hover:bg-cyan-400 transition-colors flex items-center gap-2 text-sm sm:text-base shadow-lg shadow-cyan-500/20">
+                    <i class="fa-solid fa-envelope"></i> sanjowilsonofficial@gmail.com
+                </a>
+                <a href="tel:+916238552309" class="px-5 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold hover:scale-105 transition-transform flex items-center gap-2 text-sm sm:text-base shadow-lg shadow-blue-500/20">
+                    <i class="fa-solid fa-phone"></i> +91 6238552309
+                </a>
+                <a href="https://www.linkedin.com/in/sanjo-wilson05042003" target="_blank" class="px-5 py-3 rounded-xl glass-panel text-white font-medium hover:border-cyan-400 transition-colors flex items-center gap-2 text-sm sm:text-base">
+                    <i class="fa-brands fa-linkedin text-cyan-400"></i> LinkedIn Profile
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Terminal Trigger Button -->
+        <button onclick="toggleTerminal()" class="fixed bottom-6 right-6 z-50 w-12 h-12 rounded-2xl glass-panel bg-slate-900/80 border border-cyan-500/30 text-cyan-400 flex items-center justify-center shadow-lg hover:scale-110 hover:border-cyan-400 transition-all group" title="Open Developer Terminal">
+            <i class="fa-solid fa-terminal text-lg group-hover:rotate-12 transition-transform"></i>
+        </button>
+
+        <!-- Terminal Modal Overlay -->
+        <div id="terminal-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm hidden p-4">
+            <div class="w-full max-w-2xl h-[450px] glass-panel bg-slate-950/90 border border-cyan-500/40 rounded-2xl shadow-2xl flex flex-col overflow-hidden font-mono">
+                
+                <!-- Terminal Header -->
+                <div class="px-4 py-3 bg-slate-900/80 border-b border-cyan-500/20 flex items-center justify-between select-none">
+                    <div class="flex items-center gap-2">
+                        <div class="w-3 h-3 rounded-full bg-rose-500/80"></div>
+                        <div class="w-3 h-3 rounded-full bg-amber-500/80"></div>
+                        <div class="w-3 h-3 rounded-full bg-emerald-500/80"></div>
+                        <span class="ml-2 text-xs text-gray-400 font-semibold">sanjo-portfolio-shell ~</span>
+                    </div>
+                    <button onclick="toggleTerminal()" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fa-solid fa-xmark text-sm"></i>
+                    </button>
+                </div>
+
+                <!-- Terminal Output Body -->
+                <div id="terminal-output" class="flex-1 p-4 overflow-y-auto text-xs sm:text-sm text-gray-300 space-y-2 scrollbar-thin scrollbar-thumb-cyan-500/20">
+                    <p class="text-cyan-400">Welcome to Sanjo Wilson's Interactive CLI v1.0.0</p>
+                    <p class="text-gray-400">Type <span class="text-cyan-300 font-bold">'help'</span> to see available commands or <span class="text-cyan-300 font-bold">'about'</span> to get started.</p>
+                    <br>
+                </div>
+
+                <!-- Terminal Input Line -->
+                <div class="p-3 bg-slate-900/50 border-t border-cyan-500/20 flex items-center gap-2">
+                    <span class="text-cyan-400 font-bold">visitor@portfolio:~$</span>
+                    <input type="text" id="terminal-input" autofocus class="flex-1 bg-transparent text-white focus:outline-none font-mono text-xs sm:text-sm" placeholder="type a command..." onkeydown="handleTerminalInput(event)">
+                </div>
+            </div>
+        </div>
+
+    <!-- Footer -->
+    <footer class="py-8 border-t border-white/10 text-center text-xs text-gray-400 code-font">
+        &copy; 2026 SANJO WILSON. ALL RIGHTS RESERVED.
+    </footer>
+
+    <!-- Interactive Certificate Modal -->
+    <div id="certModal" class="modal hidden fixed inset-0 z-50 flex items-center justify-center px-4 bg-black/80 backdrop-blur-sm">
+        <div class="glass-panel max-w-md w-full p-8 rounded-3xl relative border-cyan-400/50 transform transition-all">
+            <button onclick="closeCertificateModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="w-12 h-12 rounded-2xl bg-cyan-500/10 flex items-center justify-center text-cyan-400 mb-4">
+                <i class="fa-solid fa-award text-2xl"></i>
+            </div>
+            <h3 id="modalTitle" class="text-xl font-bold text-white mb-2">Certificate Title</h3>
+            <p id="modalDesc" class="text-gray-300 text-sm mb-6 leading-relaxed">Certificate description details will appear here.</p>
+            <div class="flex justify-end">
+                <button onclick="closeCertificateModal()" class="px-5 py-2 rounded-xl bg-cyan-500 text-black font-semibold text-sm hover:bg-cyan-400 transition-colors">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- AOS Animation Library JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS animations
+        AOS.init({
+            once: true,
+            offset: 100,
+            duration: 800,
+            easing: 'ease-in-out'
+        });
+
+        // Mobile Menu Drawer Toggle Function
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            const icon = document.getElementById('menuIcon');
+            menu.classList.toggle('hidden');
+            if (menu.classList.contains('hidden')) {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            } else {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            }
+        }
+
+        // Certificate Modal functions
+        function openCertificateModal(title, description) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalDesc').innerText = description;
+            document.getElementById('certModal').classList.remove('hidden');
+        }
+
+        function closeCertificateModal() {
+            document.getElementById('certModal').classList.add('hidden');
+        }
+
+        // Seminar Modal functions
+        function openSeminarModal() {
+            document.getElementById('seminarModal').classList.remove('hidden');
+        }
+
+        function closeSeminarModal() {
+            document.getElementById('seminarModal').classList.add('hidden');
+        }
+
+        // Easter egg interaction on Avatar card click
+        function triggerEasterEgg() {
+            alert("Hello! Welcome to Sanjo Wilson's interactive portfolio space. Ready to build something extraordinary together?");
+        }
+
+        // Particle Canvas background animation
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+        let particlesArray = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 1.5;
+                this.speedX = (Math.random() - 0.5) * 0.6;
+                this.speedY = (Math.random() - 0.5) * 0.6;
+                this.opacity = Math.random() * 0.6 + 0.2;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x > canvas.width) this.x = 0;
+                if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0;
+                if (this.y < 0) this.y = canvas.height;
+            }
+            draw() {
+                ctx.fillStyle = `rgba(0, 242, 254, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particlesArray = [];
+            let numberOfParticles = (canvas.width * canvas.height) / 12000;
+            for (let i = 0; i < numberOfParticles; i++) {
+                particlesArray.push(new Particle());
+            }
+        }
+        initParticles();
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+                particlesArray[i].draw();
+            }
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+
+        function toggleTerminal() {
+            const modal = document.getElementById('terminal-modal');
+            modal.classList.toggle('hidden');
+            if (!modal.classList.contains('hidden')) {
+                document.getElementById('terminal-input').focus();
+            }
+        }
+
+        // Close terminal when clicking outside the window box
+        document.getElementById('terminal-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                toggleTerminal();
+            }
+        });
+
+        function handleTerminalInput(event) {
+            if (event.key === 'Enter') {
+                const inputField = document.getElementById('terminal-input');
+                const outputContainer = document.getElementById('terminal-output');
+                const rawInput = inputField.value.trim();
+                const command = rawInput.toLowerCase();
+
+                if (rawInput === '') return;
+
+                // Echo user command
+                const userCommandParagraph = document.createElement('p');
+                userCommandParagraph.innerHTML = `<span class="text-cyan-400">visitor@portfolio:~$</span> <span class="text-white">${escapeHtml(rawInput)}</span>`;
+                outputContainer.appendChild(userCommandParagraph);
+
+                // Process command response / chatbot logic
+                const responseParagraph = document.createElement('p');
+                responseParagraph.className = "text-gray-300 leading-relaxed";
+
+                switch (true) {
+                    // --- Core Developer Commands ---
+                    case command === 'help':
+                        responseParagraph.innerHTML = `
+                            <span class="text-cyan-400 font-bold">Available Commands & Topics:</span><br>
+                            &nbsp;&nbsp;<b class="text-white">about</b> &nbsp;&nbsp;&nbsp;&nbsp;- Brief overview of Sanjo Wilson<br>
+                            &nbsp;&nbsp;<b class="text-white">skills</b> &nbsp;&nbsp;&nbsp;&nbsp;- List core technical proficiencies<br>
+                            &nbsp;&nbsp;<b class="text-white">projects</b> &nbsp;&nbsp;- View key development projects<br>
+                            &nbsp;&nbsp;<b class="text-white">contact</b> &nbsp;&nbsp;&nbsp;- Get direct email & social handles<br>
+                            &nbsp;&nbsp;<b class="text-white">clear</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Clear the terminal screen<br>
+                            &nbsp;&nbsp;<b class="text-white">exit</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Close the terminal window<br>
+                            <span class="text-gray-500 text-xs">💡 Tip: You can also chat with me naturally (e.g., "Who are you?", "Are you open to work?")</span>
+                        `;
+                        break;
+                    case command === 'about':
+                        responseParagraph.innerHTML = `MCA Graduate with a strong foundation in software development, web engineering, and AI-powered applications. Passionate about building impactful digital solutions.`;
+                        break;
+                    case command === 'skills':
+                        responseParagraph.innerHTML = `<span class="text-cyan-400">Core Tech:</span> Python, JavaScript, SQL, HTML/CSS, Tailwind, Git, Relational Databases, Computer Vision, and Web Engineering.`;
+                        break;
+                    case command === 'projects':
+                        responseParagraph.innerHTML = `
+                            <span class="text-cyan-400 font-bold">Featured Works:</span><br>
+                            1. AI Powered Debug Reviewer (Groq AI & Judge0)<br>
+                            2. Driver Drowsiness Detection System (Facial Landmarks)<br>
+                            3. iWiFi Furniture Website & Sanvia Kart E-commerce
+                        `;
+                        break;
+                    case command === 'contact':
+                        responseParagraph.innerHTML = `Email: <a href="mailto:sanjowilsonmaliekkal@gmail.com" class="text-cyan-400 underline">sanjowilsonmaliekkal@gmail.com</a><br>GitHub: <a href="https://github.com/EPIC4REAL" target="_blank" class="text-cyan-400 underline">github.com/EPIC4REAL</a>`;
+                        break;
+                    case command === 'clear':
+                        outputContainer.innerHTML = '';
+                        inputField.value = '';
+                        return;
+                    case command === 'exit':
+                        toggleTerminal();
+                        inputField.value = '';
+                        return;
+
+                    // --- Chatbot & Conversational Logic ---
+                    case command.includes('hi') || command.includes('hello') || command.includes('hey'):
+                        responseParagraph.innerHTML = `Hey there! 👋 Welcome to Sanjo's portfolio. Type <span class="text-cyan-300 font-bold">'help'</span> to see what I can do.`;
+                        break;
+                    case command.includes('who are you') || command.includes('your name'):
+                        responseParagraph.innerHTML = `I am Sanjo Wilson's interactive AI assistant built right into his portfolio shell! How can I help you today?`;
+                        break;
+                    case command.includes('how old') || command.includes('birthday') || command.includes('born'):
+                        responseParagraph.innerHTML = `Sanjo was born on May 4, 2003.`;
+                        break;
+                    case command.includes('girlfriend') || command.includes('relationship') || command.includes('neha'):
+                        responseParagraph.innerHTML = `Sanjo's heart belongs to his wonderful girlfriend, Neha Haridas! ❤️`;
+                        break;
+                    case command.includes('job') || command.includes('hire') || command.includes('work') || command.includes('position'):
+                        responseParagraph.innerHTML = `Sanjo is an MCA graduate specializing in software development, web applications, and IT support. He is actively looking for exciting new roles! Drop him a line via the contact section.`;
+                        break;
+                    case command.includes('hockey') || command.includes('sport'):
+                        responseParagraph.innerHTML = `Fun fact: Sanjo played sub-district senior hockey and even secured 1st place in the Mala Sub District Hockey Competition! 🏒`;
+                        break;
+                    case command.includes('languages') || command.includes('speak'):
+                        responseParagraph.innerHTML = `Sanjo is multilingual and fluent in English, Hindi, Malayalam, and Tamil! 🌍`;
+                        break;
+                    case command.includes('thank'):
+                        responseParagraph.innerHTML = `You're very welcome! Let me know if you need anything else. 😊`;
+                        break;
+
+                    // --- Default Fallback ---
+                    default:
+                        responseParagraph.innerHTML = `<span class="text-rose-400">Hmm, I didn't quite catch that. Type <span class="text-cyan-300 font-bold">'help'</span> to see valid commands or ask me a question about Sanjo!</span>`;
+                }
+
+                outputContainer.appendChild(responseParagraph);
+
+                // Reset input and scroll to bottom
+                inputField.value = '';
+                outputContainer.scrollTop = outputContainer.scrollHeight;
+            }
+        }
+
+        // Security helper to prevent HTML injection in console echo
+        function escapeHtml(text) {
+            const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
+            return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+        }
+    </script>
+</body>
+</html>
